@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ignacio Verdugo | Medical Radiation Physics</title>
+<meta name="description" content="Ignacio Verdugo, PhD student in Medical Radiation Physics at Stockholm University and affiliated graduate researcher at Karolinska Institutet.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='none' stroke='%233B5BC4' stroke-width='2.5'/%3E%3Ccircle cx='16' cy='16' r='9.5' fill='none' stroke='%23E07A1F' stroke-width='2.5'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%23C8323C'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FFFFFF;
+    --ink: #17212E;
+    --muted: #5A6573;
+    --rule: #E2E6EC;
+    --tint: #EEF2F8;
+    --accent: #2456A6;
+    --serif: "Newsreader", Georgia, "Times New Roman", serif;
+    --sans: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+  a:hover { text-decoration-thickness: 2px; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+  p { margin: 0 0 1em; }
+  .wrap { max-width: 62rem; margin: 0 auto; padding: 0 1.5rem; }
+
+  /* Top bar */
+  .bar {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(255,255,255,0.94);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .bar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; height: 3.75rem; }
+  .bar .home { font-family: var(--serif); font-size: 1.2rem; color: var(--ink); text-decoration: none; white-space: nowrap; }
+  .bar nav { display: flex; gap: 1.4rem; overflow-x: auto; scrollbar-width: none; }
+  .bar nav::-webkit-scrollbar { display: none; }
+  .bar nav a { color: var(--muted); text-decoration: none; font-size: 0.95rem; white-space: nowrap; }
+  .bar nav a:hover { color: var(--ink); }
+
+  /* Hero */
+  .hero { display: grid; grid-template-columns: 22rem 1fr; gap: 3.5rem; align-items: center; padding: 4.5rem 0 4rem; }
+  .dose { width: 100%; height: auto; display: block; }
+  .iso { fill: none; stroke-width: 2.4; stroke-linejoin: round; }
+  .initials { font-family: var(--serif); font-size: 64px; fill: var(--accent); }
+  h1 {
+    font-family: var(--serif); font-weight: 500;
+    font-size: clamp(2.6rem, 6vw, 4rem); line-height: 1.02; letter-spacing: -0.015em;
+    margin: 0 0 0.6rem;
+  }
+  .role { font-size: 1.15rem; color: var(--muted); margin-bottom: 1.6rem; }
+  .bio { max-width: 36rem; }
+  .links { display: flex; flex-wrap: wrap; gap: 0.6rem 1.4rem; margin-top: 1.6rem; padding: 0; list-style: none; }
+
+  /* Sections */
+  section.block { display: grid; grid-template-columns: 10rem 1fr; gap: 2.5rem; padding: 3.25rem 0; border-top: 1px solid var(--rule); }
+  h2 {
+    font-family: var(--serif); font-weight: 500; font-size: 1.75rem; line-height: 1.2;
+    margin: 0; position: sticky; top: 5.25rem; align-self: start;
+  }
+  h3 { font-size: 1rem; font-weight: 600; margin: 0 0 0.2rem; }
+  h3.group { font-family: var(--serif); font-weight: 500; font-size: 1.3rem; margin: 2.5rem 0 1rem; }
+  h3.group:first-child { margin-top: 0; }
+  .content > p { max-width: 40rem; }
+
+  .entries { list-style: none; margin: 0; padding: 0; }
+  .entry { display: grid; grid-template-columns: 8rem 1fr; gap: 1.5rem; padding: 0.9rem 0; }
+  .entry + .entry { border-top: 1px solid var(--rule); }
+  .when { color: var(--muted); font-size: 0.92rem; font-variant-numeric: tabular-nums; padding-top: 0.12rem; }
+  .where { color: var(--muted); margin: 0 0 0.35rem; }
+  .entry p:last-child { margin-bottom: 0; }
+  .entry .desc { max-width: 38rem; }
+  .compact .entry { padding: 0.6rem 0; }
+  .titles { margin: 0.15rem 0 0; padding: 0; list-style: none; }
+  .titles li { font-style: italic; font-family: var(--serif); font-size: 1.08rem; }
+  .kind { color: var(--muted); font-size: 0.9rem; font-weight: 400; font-family: var(--sans); font-style: normal; }
+
+  .pub { font-family: var(--serif); font-size: 1.15rem; line-height: 1.5; max-width: 40rem; }
+  .pub .title { font-weight: 500; }
+  .pub .authors, .pub .venue { font-family: var(--sans); font-size: 0.98rem; color: var(--muted); display: block; margin-top: 0.25rem; }
+  .pub .authors b { color: var(--ink); font-weight: 600; }
+
+  .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 2rem 2.5rem; }
+  .plain { list-style: none; margin: 0; padding: 0; }
+  .plain li { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 0.3rem 0; }
+  .plain .kind { white-space: nowrap; }
+
+  .mail { font-family: var(--serif); font-size: clamp(1.4rem, 3.5vw, 2rem); }
+
+  footer { border-top: 1px solid var(--rule); color: var(--muted); font-size: 0.9rem; padding: 2rem 0 3rem; }
+
+  /* One orchestrated moment: dose lines draw outward from the photo */
+  @media (prefers-reduced-motion: no-preference) {
+    .iso { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 1.2s cubic-bezier(.3,.6,.3,1) forwards; animation-delay: calc(var(--i) * 150ms + 200ms); }
+    @keyframes draw { to { stroke-dashoffset: 0; } }
+  }
+
+  @media (max-width: 760px) {
+    .bar .home { display: none; }
+    .bar nav { gap: 1.1rem; }
+    .hero { grid-template-columns: 1fr; gap: 1.5rem; padding: 2.5rem 0 3rem; }
+    .dose { max-width: 17rem; margin: 0 auto; }
+    section.block { grid-template-columns: 1fr; gap: 1.25rem; padding: 2.5rem 0; }
+    h2 { position: static; }
+    .entry { grid-template-columns: 1fr; gap: 0.15rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="home" href="#top">Ignacio Verdugo</a>
+    <nav aria-label="Sections">
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#talks">Talks</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap" id="top">
+
+  <div class="hero">
+    <svg class="dose" viewBox="-26 -26 452 452" role="img" aria-label="Photo of Ignacio Verdugo, framed by dose contour lines like those in a radiotherapy treatment plan">
+      <defs><clipPath id="avatar"><circle cx="200" cy="200" r="96"/></clipPath></defs>
+      <circle cx="200" cy="200" r="96" fill="#EEF2F8"/>
+      <text class="initials" x="200" y="222" text-anchor="middle">IV</text>
+      <!-- To add your photo: upload a file named photo.jpg to the same place as this file. -->
+      <image href="photo.jpg" x="104" y="104" width="192" height="192" clip-path="url(#avatar)" preserveAspectRatio="xMidYMid slice" onerror="this.remove()"/>
+      <path class="iso" pathLength="1" style="--i:0;stroke:#C8323C" d="M304.4 200.0C304.4 203.0 304.3 206.1 304.0 209.1C303.7 212.1 303.3 215.1 302.7 218.1C302.1 221.1 301.4 224.0 300.6 227.0C299.8 229.9 298.8 232.7 297.7 235.6C296.6 238.4 295.4 241.2 294.1 243.9C292.8 246.6 291.3 249.2 289.8 251.8C288.2 254.4 286.6 256.9 284.8 259.4C283.1 261.8 281.2 264.2 279.3 266.5C277.3 268.8 275.3 271.0 273.2 273.2C271.0 275.3 268.8 277.3 266.5 279.2C264.2 281.2 261.8 283.0 259.3 284.7C256.9 286.5 254.3 288.1 251.7 289.6C249.1 291.1 246.4 292.4 243.7 293.7C241.0 294.9 238.1 296.0 235.3 297.0C232.5 298.0 229.6 298.9 226.7 299.6C223.8 300.3 220.8 300.9 217.9 301.3C214.9 301.7 211.9 302.0 208.9 302.2C206.0 302.4 203.0 302.4 200.0 302.3C197.0 302.3 194.1 302.0 191.1 301.7C188.2 301.4 185.2 300.9 182.3 300.4C179.4 299.8 176.5 299.1 173.7 298.3C170.8 297.6 168.0 296.7 165.2 295.6C162.4 294.6 159.7 293.5 157.0 292.3C154.3 291.1 151.6 289.8 149.0 288.3C146.4 286.9 143.9 285.4 141.4 283.7C138.9 282.1 136.5 280.3 134.2 278.5C131.8 276.6 129.6 274.6 127.4 272.6C125.3 270.5 123.2 268.3 121.3 266.0C119.4 263.8 117.5 261.4 115.8 259.0C114.1 256.5 112.5 254.0 111.0 251.4C109.5 248.8 108.2 246.1 106.9 243.4C105.7 240.7 104.6 237.9 103.6 235.1C102.6 232.3 101.8 229.4 101.1 226.5C100.3 223.6 99.7 220.7 99.2 217.8C98.8 214.8 98.4 211.9 98.1 208.9C97.8 206.0 97.7 203.0 97.6 200.0C97.6 197.0 97.7 194.0 97.8 191.1C98.0 188.1 98.3 185.1 98.7 182.1C99.1 179.2 99.6 176.2 100.2 173.3C100.8 170.3 101.5 167.4 102.4 164.5C103.3 161.6 104.3 158.7 105.4 155.9C106.5 153.1 107.8 150.3 109.1 147.5C110.5 144.8 112.1 142.2 113.7 139.6C115.4 137.0 117.2 134.5 119.1 132.1C121.0 129.8 123.1 127.5 125.3 125.3C127.5 123.1 129.8 121.1 132.2 119.1C134.5 117.2 137.1 115.4 139.6 113.8C142.2 112.1 144.9 110.6 147.6 109.2C150.3 107.9 153.1 106.6 156.0 105.5C158.8 104.5 161.7 103.5 164.6 102.7C167.5 101.9 170.4 101.2 173.4 100.6C176.3 100.0 179.3 99.6 182.2 99.3C185.2 99.0 188.2 98.8 191.1 98.7C194.1 98.6 197.1 98.6 200.0 98.7C202.9 98.9 205.9 99.1 208.8 99.4C211.7 99.8 214.6 100.2 217.5 100.8C220.4 101.3 223.2 102.0 226.1 102.8C228.9 103.5 231.7 104.4 234.4 105.4C237.2 106.4 239.9 107.4 242.6 108.6C245.3 109.8 247.9 111.1 250.5 112.5C253.1 113.9 255.6 115.4 258.1 117.0C260.6 118.6 263.0 120.4 265.3 122.2C267.6 124.0 269.9 125.9 272.1 127.9C274.2 129.9 276.4 132.1 278.4 134.3C280.4 136.5 282.3 138.7 284.1 141.1C285.9 143.5 287.6 146.0 289.2 148.5C290.8 151.0 292.3 153.6 293.7 156.3C295.1 159.0 296.3 161.7 297.5 164.5C298.6 167.3 299.6 170.2 300.5 173.1C301.3 176.0 302.0 178.9 302.6 181.9C303.2 184.9 303.7 187.9 303.9 190.9C304.2 193.9 304.4 197.0 304.4 200.0Z"/>
+      <path class="iso" pathLength="1" style="--i:1;stroke:#E07A1F" d="M321.7 200.0C321.7 203.5 321.6 207.1 321.2 210.6C320.8 214.1 320.3 217.6 319.6 221.1C318.9 224.5 318.0 228.0 316.9 231.3C315.9 234.7 314.7 238.0 313.3 241.3C312.0 244.5 310.5 247.7 308.9 250.8C307.3 253.9 305.6 256.9 303.7 259.9C301.9 262.8 299.9 265.7 297.9 268.5C295.8 271.3 293.6 274.1 291.4 276.7C289.1 279.3 286.8 281.9 284.3 284.3C281.8 286.7 279.3 289.1 276.6 291.3C274.0 293.5 271.2 295.7 268.4 297.6C265.5 299.6 262.6 301.5 259.6 303.2C256.6 304.9 253.4 306.4 250.3 307.8C247.1 309.2 243.9 310.5 240.6 311.5C237.3 312.6 234.0 313.5 230.6 314.2C227.2 314.9 223.8 315.5 220.4 315.9C217.0 316.2 213.6 316.4 210.2 316.5C206.8 316.6 203.4 316.5 200.0 316.3C196.6 316.0 193.3 315.7 189.9 315.2C186.6 314.7 183.3 314.1 180.0 313.4C176.7 312.6 173.5 311.8 170.3 310.9C167.1 310.0 163.9 309.0 160.7 307.8C157.6 306.7 154.5 305.5 151.4 304.2C148.4 302.9 145.3 301.4 142.3 299.9C139.4 298.3 136.4 296.7 133.5 294.9C130.7 293.1 127.9 291.2 125.2 289.2C122.5 287.2 119.8 285.0 117.3 282.7C114.8 280.4 112.4 278.0 110.1 275.4C107.9 272.8 105.7 270.2 103.8 267.4C101.8 264.6 100.0 261.7 98.3 258.7C96.6 255.7 95.1 252.7 93.8 249.5C92.4 246.4 91.3 243.2 90.2 240.0C89.2 236.7 88.3 233.4 87.5 230.1C86.8 226.8 86.1 223.5 85.6 220.2C85.1 216.8 84.7 213.5 84.4 210.1C84.1 206.8 83.9 203.4 83.7 200.0C83.6 196.6 83.6 193.2 83.6 189.8C83.7 186.4 83.8 183.0 84.1 179.6C84.3 176.1 84.6 172.7 85.1 169.2C85.6 165.8 86.2 162.3 86.9 158.9C87.7 155.4 88.6 151.9 89.7 148.5C90.7 145.1 92.0 141.7 93.4 138.5C94.8 135.2 96.4 131.9 98.3 128.8C100.1 125.6 102.1 122.6 104.3 119.7C106.5 116.8 109.0 114.1 111.5 111.5C114.1 109.0 116.9 106.6 119.8 104.4C122.7 102.2 125.7 100.2 128.9 98.4C132.0 96.6 135.3 95.0 138.6 93.6C141.9 92.3 145.3 91.1 148.8 90.1C152.2 89.1 155.7 88.3 159.1 87.7C162.6 87.0 166.1 86.6 169.5 86.3C173.0 85.9 176.4 85.8 179.8 85.7C183.3 85.6 186.7 85.7 190.0 85.9C193.4 86.0 196.7 86.3 200.0 86.6C203.3 87.0 206.6 87.4 209.8 87.9C213.0 88.5 216.3 89.1 219.4 89.7C222.6 90.4 225.8 91.2 228.9 92.1C232.1 92.9 235.2 93.9 238.3 94.9C241.3 96.0 244.4 97.1 247.4 98.3C250.4 99.6 253.4 100.9 256.4 102.4C259.3 103.9 262.2 105.4 265.0 107.1C267.9 108.8 270.7 110.6 273.4 112.5C276.1 114.4 278.8 116.5 281.4 118.6C284.0 120.7 286.5 123.0 288.9 125.4C291.3 127.8 293.7 130.2 295.9 132.8C298.1 135.4 300.3 138.1 302.3 141.0C304.3 143.8 306.2 146.7 307.9 149.7C309.6 152.7 311.2 155.8 312.7 159.0C314.1 162.2 315.4 165.4 316.6 168.8C317.7 172.1 318.6 175.5 319.4 178.9C320.2 182.4 320.7 185.9 321.1 189.4C321.5 192.9 321.7 196.5 321.7 200.0Z"/>
+      <path class="iso" pathLength="1" style="--i:2;stroke:#C99A0E" d="M342.3 200.0C342.4 204.1 342.1 208.3 341.7 212.4C341.2 216.5 340.5 220.6 339.6 224.6C338.7 228.6 337.5 232.6 336.2 236.5C334.9 240.4 333.3 244.2 331.7 247.9C330.0 251.6 328.2 255.3 326.2 258.8C324.2 262.4 322.1 265.9 319.9 269.2C317.7 272.6 315.4 275.9 313.0 279.1C310.5 282.3 308.0 285.4 305.4 288.4C302.7 291.4 300.0 294.3 297.1 297.1C294.3 299.9 291.3 302.6 288.3 305.2C285.2 307.8 282.0 310.2 278.8 312.5C275.5 314.8 272.1 316.9 268.6 318.8C265.1 320.8 261.5 322.6 257.9 324.1C254.2 325.6 250.4 327.0 246.6 328.1C242.8 329.2 238.9 330.2 235.1 330.8C231.2 331.5 227.2 332.0 223.3 332.3C219.4 332.5 215.5 332.6 211.6 332.5C207.7 332.3 203.8 332.0 200.0 331.6C196.2 331.1 192.4 330.5 188.6 329.8C184.9 329.1 181.2 328.3 177.5 327.4C173.9 326.5 170.3 325.4 166.7 324.4C163.1 323.3 159.5 322.1 156.0 320.9C152.5 319.6 149.0 318.3 145.5 316.9C142.0 315.5 138.5 314.0 135.1 312.4C131.7 310.8 128.3 309.0 125.0 307.2C121.7 305.3 118.4 303.2 115.2 301.1C112.0 298.9 108.9 296.5 106.0 294.0C103.1 291.5 100.3 288.8 97.6 285.9C95.0 283.0 92.5 280.0 90.3 276.8C88.0 273.7 85.9 270.3 84.1 266.9C82.2 263.5 80.5 260.0 79.1 256.4C77.6 252.8 76.4 249.1 75.3 245.4C74.2 241.7 73.3 237.9 72.5 234.2C71.8 230.4 71.2 226.6 70.6 222.8C70.1 219.0 69.7 215.2 69.3 211.4C68.9 207.6 68.6 203.8 68.4 200.0C68.1 196.2 67.9 192.3 67.8 188.4C67.7 184.5 67.6 180.6 67.6 176.7C67.6 172.7 67.6 168.7 67.9 164.6C68.1 160.5 68.4 156.4 68.9 152.3C69.4 148.2 70.0 144.0 71.0 139.8C71.9 135.7 73.0 131.5 74.4 127.5C75.8 123.5 77.5 119.4 79.5 115.6C81.4 111.8 83.7 108.0 86.2 104.5C88.8 101.0 91.6 97.7 94.7 94.7C97.7 91.6 101.1 88.8 104.6 86.3C108.1 83.8 111.9 81.6 115.8 79.7C119.6 77.8 123.7 76.2 127.8 74.9C131.9 73.6 136.1 72.6 140.2 71.9C144.4 71.1 148.6 70.6 152.8 70.3C157.0 70.0 161.1 70.0 165.2 70.1C169.3 70.2 173.3 70.5 177.2 70.8C181.2 71.2 185.0 71.7 188.8 72.2C192.6 72.8 196.3 73.4 200.0 74.1C203.7 74.8 207.3 75.5 210.8 76.3C214.4 77.1 217.9 77.9 221.4 78.7C224.9 79.6 228.3 80.5 231.8 81.4C235.2 82.4 238.6 83.4 242.0 84.5C245.4 85.6 248.8 86.7 252.2 88.0C255.6 89.3 259.0 90.6 262.3 92.1C265.6 93.5 269.0 95.1 272.3 96.8C275.5 98.5 278.8 100.3 282.0 102.3C285.2 104.2 288.4 106.3 291.5 108.5C294.6 110.8 297.6 113.1 300.5 115.6C303.5 118.1 306.4 120.8 309.1 123.6C311.9 126.4 314.5 129.3 317.1 132.4C319.6 135.5 322.0 138.7 324.2 142.1C326.4 145.4 328.5 148.9 330.4 152.5C332.3 156.1 334.0 159.9 335.4 163.7C336.9 167.5 338.2 171.5 339.2 175.5C340.2 179.4 341.0 183.5 341.5 187.6C342.0 191.7 342.3 195.9 342.3 200.0Z"/>
+      <path class="iso" pathLength="1" style="--i:3;stroke:#3E9A57" d="M364.1 200.0C364.1 204.8 363.8 209.6 363.3 214.3C362.7 219.0 361.8 223.7 360.7 228.3C359.5 232.9 358.1 237.5 356.5 241.9C354.9 246.4 353.0 250.7 351.0 255.0C349.0 259.2 346.8 263.3 344.5 267.4C342.1 271.4 339.6 275.3 337.0 279.1C334.5 282.9 331.7 286.7 328.9 290.3C326.1 293.9 323.2 297.4 320.1 300.8C317.1 304.2 314.0 307.5 310.7 310.7C307.5 313.9 304.1 317.0 300.6 319.9C297.1 322.8 293.5 325.6 289.8 328.2C286.0 330.8 282.2 333.2 278.2 335.4C274.2 337.6 270.1 339.6 265.9 341.3C261.7 343.0 257.4 344.5 253.0 345.7C248.7 346.9 244.2 347.8 239.8 348.5C235.3 349.1 230.8 349.5 226.4 349.6C221.9 349.8 217.5 349.6 213.1 349.3C208.7 349.0 204.3 348.5 200.0 347.8C195.7 347.2 191.5 346.3 187.3 345.4C183.1 344.4 179.0 343.4 174.9 342.2C170.8 341.1 166.8 339.9 162.8 338.7C158.8 337.4 154.9 336.1 151.0 334.8C147.0 333.4 143.1 332.0 139.2 330.5C135.2 329.0 131.3 327.4 127.4 325.7C123.6 324.0 119.7 322.1 115.9 320.1C112.1 318.1 108.3 316.0 104.7 313.6C101.0 311.3 97.4 308.7 94.0 306.0C90.7 303.2 87.4 300.2 84.4 297.0C81.4 293.8 78.5 290.4 75.9 286.9C73.4 283.3 71.0 279.5 69.0 275.7C66.9 271.8 65.1 267.7 63.5 263.6C61.9 259.6 60.6 255.4 59.5 251.1C58.3 246.9 57.5 242.7 56.7 238.4C55.9 234.2 55.3 229.9 54.7 225.6C54.1 221.4 53.7 217.1 53.3 212.8C52.9 208.6 52.5 204.3 52.1 200.0C51.7 195.7 51.4 191.4 51.0 187.0C50.7 182.6 50.4 178.1 50.1 173.6C49.9 169.0 49.6 164.4 49.6 159.7C49.5 155.0 49.5 150.2 49.8 145.3C50.1 140.5 50.5 135.5 51.2 130.6C52.0 125.7 53.0 120.8 54.4 115.9C55.8 111.1 57.5 106.3 59.6 101.7C61.8 97.2 64.3 92.7 67.2 88.5C70.0 84.4 73.3 80.4 76.9 76.9C80.5 73.4 84.5 70.1 88.7 67.3C92.8 64.5 97.4 62.0 102.0 60.0C106.6 58.0 111.5 56.4 116.4 55.2C121.3 53.9 126.3 53.1 131.3 52.6C136.2 52.1 141.2 51.9 146.1 52.0C151.0 52.0 155.9 52.4 160.6 53.0C165.3 53.5 169.9 54.2 174.4 55.0C178.9 55.8 183.3 56.8 187.6 57.7C191.8 58.7 195.9 59.7 200.0 60.7C204.1 61.8 208.0 62.8 211.9 63.9C215.8 64.9 219.6 65.9 223.5 67.0C227.3 68.0 231.0 69.0 234.8 70.1C238.6 71.2 242.3 72.2 246.1 73.4C249.8 74.5 253.6 75.7 257.4 77.0C261.1 78.3 264.9 79.6 268.7 81.1C272.4 82.6 276.2 84.1 279.9 85.8C283.7 87.6 287.4 89.4 291.1 91.4C294.8 93.4 298.5 95.5 302.1 97.9C305.8 100.2 309.4 102.6 312.9 105.3C316.4 108.0 319.8 110.8 323.1 113.8C326.4 116.8 329.7 120.0 332.7 123.4C335.8 126.7 338.7 130.3 341.5 134.0C344.2 137.8 346.8 141.7 349.1 145.7C351.4 149.8 353.6 154.0 355.4 158.4C357.2 162.7 358.8 167.2 360.1 171.8C361.4 176.3 362.4 181.0 363.0 185.7C363.7 190.4 364.0 195.2 364.1 200.0Z"/>
+      <path class="iso" pathLength="1" style="--i:4;stroke:#2A8FB0" d="M385.7 200.0C385.7 205.4 385.4 210.8 384.7 216.2C384.1 221.5 383.0 226.8 381.7 232.0C380.3 237.2 378.7 242.4 376.8 247.4C374.9 252.4 372.7 257.2 370.3 262.0C368.0 266.7 365.4 271.4 362.7 275.9C360.0 280.4 357.1 284.7 354.1 289.0C351.1 293.2 348.0 297.4 344.8 301.4C341.6 305.4 338.3 309.4 334.9 313.2C331.5 317.0 327.9 320.7 324.3 324.3C320.6 327.8 316.8 331.3 312.9 334.6C309.0 337.9 305.0 341.0 300.8 343.9C296.6 346.8 292.2 349.5 287.7 352.0C283.3 354.4 278.6 356.6 273.9 358.5C269.2 360.4 264.3 362.0 259.4 363.2C254.5 364.5 249.5 365.4 244.5 366.1C239.5 366.7 234.4 367.0 229.4 367.0C224.5 367.0 219.5 366.7 214.5 366.3C209.6 365.8 204.8 365.0 200.0 364.1C195.2 363.2 190.5 362.1 185.9 361.0C181.3 359.8 176.8 358.5 172.3 357.2C167.8 355.9 163.4 354.5 159.0 353.1C154.6 351.7 150.2 350.2 145.9 348.7C141.5 347.2 137.2 345.7 132.8 344.1C128.4 342.5 124.1 340.8 119.7 339.0C115.4 337.2 111.0 335.3 106.7 333.2C102.5 331.1 98.2 328.8 94.1 326.3C89.9 323.7 85.9 321.0 82.0 318.0C78.2 314.9 74.5 311.7 71.1 308.2C67.7 304.6 64.5 300.9 61.6 296.9C58.7 292.9 56.1 288.7 53.9 284.4C51.6 280.0 49.6 275.5 47.9 270.9C46.2 266.3 44.8 261.6 43.6 256.9C42.4 252.2 41.5 247.4 40.7 242.7C39.9 237.9 39.3 233.2 38.7 228.4C38.2 223.7 37.7 219.0 37.2 214.2C36.7 209.5 36.3 204.8 35.8 200.0C35.3 195.2 34.8 190.4 34.2 185.5C33.7 180.6 33.1 175.6 32.7 170.5C32.2 165.4 31.6 160.2 31.3 154.8C31.0 149.5 30.7 144.0 30.8 138.4C30.8 132.9 31.0 127.1 31.6 121.5C32.3 115.8 33.1 110.1 34.5 104.5C35.9 98.9 37.7 93.3 40.0 88.0C42.3 82.7 45.0 77.4 48.2 72.7C51.5 67.9 55.2 63.3 59.3 59.3C63.4 55.3 68.0 51.6 72.8 48.4C77.7 45.3 82.9 42.6 88.3 40.5C93.7 38.3 99.4 36.7 105.0 35.5C110.7 34.4 116.6 33.7 122.3 33.4C128.1 33.1 133.9 33.3 139.5 33.7C145.1 34.1 150.6 34.9 156.0 35.8C161.4 36.7 166.6 37.9 171.6 39.1C176.7 40.4 181.5 41.8 186.3 43.1C191.0 44.5 195.5 45.9 200.0 47.2C204.5 48.6 208.8 50.0 213.0 51.2C217.3 52.5 221.4 53.8 225.6 55.0C229.7 56.2 233.8 57.4 237.9 58.6C242.0 59.7 246.1 60.9 250.2 62.1C254.3 63.3 258.4 64.5 262.6 65.8C266.7 67.1 270.9 68.5 275.1 69.9C279.3 71.4 283.5 73.0 287.7 74.8C291.9 76.5 296.1 78.4 300.3 80.4C304.5 82.5 308.8 84.7 312.9 87.1C317.0 89.5 321.2 92.1 325.2 94.9C329.3 97.7 333.3 100.7 337.1 104.0C341.0 107.2 344.8 110.7 348.4 114.3C352.0 118.0 355.5 121.9 358.7 126.0C361.9 130.1 365.0 134.4 367.8 138.9C370.6 143.4 373.1 148.2 375.3 153.0C377.5 157.9 379.4 163.0 380.9 168.1C382.4 173.2 383.6 178.5 384.4 183.9C385.2 189.2 385.6 194.6 385.7 200.0Z"/>
+      <path class="iso" pathLength="1" style="--i:5;stroke:#3B5BC4" d="M404.8 200.0C404.8 205.9 404.4 211.9 403.7 217.8C402.9 223.7 401.7 229.6 400.2 235.3C398.7 241.0 396.8 246.7 394.6 252.2C392.5 257.6 390.0 263.0 387.4 268.2C384.7 273.4 381.8 278.5 378.8 283.4C375.8 288.3 372.6 293.1 369.2 297.7C365.9 302.4 362.5 306.9 358.9 311.3C355.4 315.7 351.7 320.0 348.0 324.1C344.2 328.3 340.3 332.4 336.3 336.3C332.3 340.2 328.1 344.0 323.8 347.6C319.5 351.2 315.1 354.6 310.5 357.8C305.9 361.0 301.1 364.0 296.2 366.6C291.3 369.3 286.2 371.7 281.0 373.7C275.8 375.7 270.5 377.5 265.1 378.8C259.7 380.1 254.2 381.1 248.7 381.7C243.2 382.3 237.6 382.5 232.2 382.5C226.7 382.4 221.2 382.0 215.9 381.4C210.5 380.7 205.2 379.8 200.0 378.7C194.8 377.6 189.7 376.3 184.7 375.0C179.7 373.6 174.8 372.1 169.9 370.6C165.1 369.1 160.3 367.6 155.5 366.0C150.8 364.4 146.0 362.9 141.3 361.3C136.6 359.6 131.8 358.0 127.1 356.3C122.4 354.6 117.6 352.9 112.8 351.0C108.1 349.1 103.3 347.1 98.6 344.9C93.9 342.6 89.1 340.2 84.6 337.5C80.1 334.8 75.6 331.9 71.4 328.6C67.1 325.4 63.0 321.9 59.3 318.1C55.5 314.3 52.0 310.1 48.9 305.8C45.7 301.5 42.9 296.9 40.4 292.1C37.9 287.4 35.8 282.4 34.0 277.4C32.2 272.4 30.7 267.2 29.5 262.1C28.2 256.9 27.3 251.7 26.5 246.5C25.7 241.3 25.1 236.1 24.5 230.9C23.9 225.8 23.4 220.7 22.9 215.5C22.3 210.3 21.8 205.2 21.2 200.0C20.6 194.8 19.9 189.6 19.3 184.2C18.6 178.8 17.8 173.4 17.1 167.8C16.4 162.1 15.7 156.4 15.1 150.5C14.6 144.6 14.1 138.5 14.0 132.3C13.8 126.1 13.8 119.7 14.3 113.4C14.9 107.1 15.7 100.6 17.1 94.4C18.5 88.1 20.3 81.8 22.7 75.9C25.2 69.9 28.1 64.1 31.7 58.7C35.2 53.4 39.3 48.3 43.9 43.9C48.4 39.4 53.5 35.3 58.9 31.9C64.4 28.5 70.3 25.6 76.3 23.3C82.3 21.1 88.7 19.4 95.1 18.3C101.4 17.1 108.0 16.6 114.4 16.5C120.8 16.3 127.3 16.8 133.6 17.5C139.8 18.2 146.0 19.3 151.9 20.6C157.8 21.8 163.6 23.4 169.1 25.0C174.7 26.5 180.0 28.3 185.1 30.0C190.3 31.7 195.2 33.4 200.0 35.1C204.8 36.7 209.4 38.3 214.0 39.8C218.6 41.3 223.0 42.8 227.5 44.1C231.9 45.5 236.3 46.8 240.7 48.1C245.1 49.3 249.5 50.5 253.9 51.8C258.4 53.1 262.8 54.3 267.3 55.6C271.8 57.0 276.4 58.3 280.9 59.9C285.5 61.4 290.1 63.0 294.7 64.7C299.3 66.5 304.0 68.4 308.6 70.5C313.3 72.7 317.9 74.9 322.5 77.5C327.1 80.0 331.8 82.7 336.3 85.6C340.8 88.6 345.3 91.8 349.6 95.2C354.0 98.7 358.2 102.4 362.3 106.3C366.4 110.2 370.3 114.4 374.0 118.9C377.7 123.3 381.2 128.0 384.3 132.9C387.4 137.8 390.4 143.0 392.9 148.3C395.4 153.6 397.5 159.2 399.3 164.9C401.0 170.5 402.4 176.4 403.3 182.2C404.2 188.1 404.7 194.1 404.8 200.0Z"/>
+    </svg>
+
+    <div>
+      <h1>Ignacio Verdugo</h1>
+      <p class="role">PhD student in Medical Radiation Physics, Stockholm University</p>
+      <div class="bio">
+        <p>I'm a medical physicist and PhD student at Stockholm University, and an affiliated graduate researcher at Karolinska Institutet. My research focuses on mathematical modelling of how tumours and the immune system respond to radiotherapy combined with immunotherapy.</p>
+        <p>Before my PhD, I spent six years at Elekta as a clinical application specialist and master trainer for the Monaco treatment planning system and MOSAIQ, training clinical teams in hospitals across Latin America and Spain in Spanish, English and Portuguese.</p>
+      </div>
+      <ul class="links">
+        <li><a href="mailto:ignacio.verdugo@fysik.su.se">Email</a></li>
+        <li><a href="https://www.linkedin.com/in/ignacio-verdugo-naranjo">LinkedIn</a></li>
+        <li><a href="https://www.researchgate.net/profile/Ignacio-Verdugo-Naranjo">ResearchGate</a></li>
+        <li><a href="https://github.com/ignacio-verdugo">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <section class="block" id="research">
+    <h2>Research</h2>
+    <div class="content">
+      <h3 class="group">Current work</h3>
+      <p>My PhD project models tumour and immune response to radiotherapy combined with immunotherapy, fitting mathematical models to pre-clinical data. I work with the Medical Radiation Physics group at Stockholm University and Karolinska Institutet.</p>
+
+      <h3 class="group">Earlier projects</h3>
+      <ul class="entries">
+        <li class="entry">
+          <div class="when">2017 – 2019</div>
+          <div>
+            <h3>Quantifying radiodermatitis with image processing</h3>
+            <p class="where">Master's thesis, University of São Paulo</p>
+            <p class="desc">Used colour imaging and image processing to estimate the grade of radiodermatitis in breast cancer patients undergoing photon radiotherapy.</p>
+          </div>
+        </li>
+        <li class="entry">
+          <div class="when">2016</div>
+          <div>
+            <h3>Monte Carlo simulation of a 6 MV linac</h3>
+            <p class="where">Undergraduate thesis, Pontificia Universidad Católica de Chile</p>
+            <p class="desc">Modelled a 6 MV linear accelerator with the EGSnrc Monte Carlo code.</p>
+          </div>
+        </li>
+        <li class="entry">
+          <div class="when">2015</div>
+          <div>
+            <h3>Dose distributions for small-animal irradiation</h3>
+            <p class="where">Research assistant, Queensland University of Technology</p>
+            <p class="desc">Studied photon distribution, scattering and absorption in an 8 × 8 × 5 cm water phantom of a mouse with air gaps and lead shielding, to find the most suitable energies and lead widths for different treatments. Funded by QUT's International Research Experience Scholarship.</p>
+          </div>
+        </li>
+        <li class="entry">
+          <div class="when">2013</div>
+          <div>
+            <h3>Sensitivity of TLD-100 dosimeters</h3>
+            <p class="where">Research assistant, Pontificia Universidad Católica de Chile</p>
+            <p class="desc">Followed the response of a new batch of 100 TLD-100 dosimeters through six successive irradiations in a 6 MV photon beam.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="publications">
+    <h2>Publications</h2>
+    <div class="content">
+      <p class="pub">
+        <span class="title">Radiodermatitis grade estimation by RGB color imaging</span>
+        <span class="authors"><b>I. Verdugo-Naranjo</b>, A. C. Hamamura, G. V. Arruda, G. C. Cardoso, J. F. Pavoni</span>
+        <span class="venue"><i>Artificial Life and Robotics</i> 27(1), 58–63 (2022). <a href="https://doi.org/10.1007/s10015-022-00739-w">doi.org/10.1007/s10015-022-00739-w</a></span>
+      </p>
+    </div>
+  </section>
+
+  <section class="block" id="experience">
+    <h2>Experience</h2>
+    <div class="content">
+      <ul class="entries">
+        <li class="entry">
+          <div class="when">2025 – present</div>
+          <div>
+            <h3>Affiliated Graduate Researcher</h3>
+            <p class="where">Karolinska Institutet, Stockholm, Sweden</p>
+          </div>
+        </li>
+        <li class="entry">
+          <div class="when">2022 – 2025</div>
+          <div>
+            <h3>Medior Application Specialist</h3>
+            <p class="where">Elekta Region South America, São Paulo, Brazil</p>
+            <p class="desc">Master trainer for Monaco and MOSAIQ RO, certifying new colleagues on both. Gave product demonstrations and talks at congresses, workshops and courses across South America, supported customers with the service team, and developed and translated training material.</p>
+          </div>
+        </li>
+        <li class="entry">
+          <div class="when">2019 – 2022</div>
+          <div>
+            <h3>Junior Application Specialist</h3>
+            <p class="where">Elekta Region South America, São Paulo, Brazil</p>
+            <p class="desc">Planned and delivered onsite and remote clinical training on Elekta products for hospitals and radiotherapy clinics in Latin America and Spain, in Spanish, English and Portuguese.</p>
+          </div>
+        </li>
+        <li class="entry">
+          <div class="when">2016</div>
+          <div>
+            <h3>Clinical Practice in Medical Physics</h3>
+            <p class="where">Cancer Centre, Pontificia Universidad Católica de Chile</p>
+            <p class="desc">Six months of clinical practice in the university hospital, following 3D, IMRT, VMAT, SRS and SBRT treatments on Elekta and Varian linacs with the Monaco and Eclipse planning systems.</p>
+          </div>
+        </li>
+        <li class="entry">
+          <div class="when">2013 – 2016</div>
+          <div>
+            <h3>Undergraduate Teaching Assistant</h3>
+            <p class="where">Pontificia Universidad Católica de Chile</p>
+            <p class="desc">Tutored calculus, differential equations and general physics for students in physics, mathematics, engineering and business.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="education">
+    <h2>Education</h2>
+    <div class="content">
+      <ul class="entries">
+        <li class="entry">
+          <div class="when">2025 – present</div>
+          <div>
+            <h3>PhD in Medical Radiation Physics</h3>
+            <p class="where">Stockholm University, Sweden</p>
+          </div>
+        </li>
+        <li class="entry">
+          <div class="when">2017 – 2019</div>
+          <div>
+            <h3>MSc in Physics Applied to Medicine and Biology</h3>
+            <p class="where">University of São Paulo, Ribeirão Preto, Brazil</p>
+          </div>
+        </li>
+        <li class="entry">
+          <div class="when">2015</div>
+          <div>
+            <h3>Exchange year</h3>
+            <p class="where">Queensland University of Technology, Brisbane, Australia</p>
+            <p class="desc">Honours in Physics and Master of Medical Physics units, including medical imaging, radiotherapy, and anatomy and physiology.</p>
+          </div>
+        </li>
+        <li class="entry">
+          <div class="when">2012 – 2016</div>
+          <div>
+            <h3>Licentiate in Physics</h3>
+            <p class="where">Pontificia Universidad Católica de Chile, Santiago</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="talks">
+    <h2>Talks</h2>
+    <div class="content">
+      <h3 class="group">Invited talks and workshops</h3>
+      <ul class="entries compact">
+        <li class="entry"><div class="when">Dec 2023</div><div><h3>Summer School: The Role of Imaging in the Radiotherapy Process</h3><p class="where">Heidelberg Center for Latin America, Santiago, Chile</p><ul class="titles"><li>Monaco SIM and 3D workshop</li></ul></div></li>
+        <li class="entry"><div class="when">Nov 2023</div><div><h3>II Colombian Medical Physics Congress</h3><p class="where">Bucaramanga, Colombia</p><ul class="titles"><li>DCAT as a solution for SRS plan optimization</li></ul></div></li>
+        <li class="entry"><div class="when">Oct 2023</div><div><h3>I National Meeting in Physics and Medical Technology</h3><p class="where">Valdivia, Chile</p><ul class="titles"><li>Introduction to Leksell Gamma Knife</li><li>Workflow optimization using the Monaco scripting tool</li></ul></div></li>
+        <li class="entry"><div class="when">Aug 2023</div><div><h3>V Brazilian Meeting of Dosimetrists</h3><p class="where">São Paulo, Brazil</p><ul class="titles"><li>Deepening concepts of image registration in Monaco</li></ul></div></li>
+        <li class="entry"><div class="when">Aug 2022</div><div><h3>IV Brazilian Meeting of Dosimetrists</h3><p class="where">São Paulo, Brazil</p><ul class="titles"><li>Adapt Anatomy tool in Monaco</li><li>Deepening concepts of contouring tools in Monaco</li></ul></div></li>
+        <li class="entry"><div class="when">Jun 2022</div><div><h3>IX Latin American Congress of Medical Physics</h3><p class="where">Fortaleza, Brazil</p><ul class="titles"><li>Introduction to Monaco</li><li>Improving knowledge in Monaco</li><li>Hands on Monaco</li></ul></div></li>
+        <li class="entry"><div class="when">May 2022</div><div><h3>II Symposium in Physics Applied to Medicine</h3><p class="where">UFCSPA, Porto Alegre, Brazil</p><ul class="titles"><li>Working as a physicist in the industry</li></ul></div></li>
+        <li class="entry"><div class="when">Oct 2021</div><div><h3>XVII Congress of Physics Applied to Medicine</h3><p class="where">UNESP, Botucatu, Brazil</p><ul class="titles"><li>Introduction to Leksell Gamma Knife</li></ul></div></li>
+        <li class="entry"><div class="when">Aug 2021</div><div><h3>XII Congress of Medical Physics</h3><p class="where">UNICAMP, Campinas, Brazil</p><ul class="titles"><li>Introduction to Leksell Gamma Knife</li></ul></div></li>
+        <li class="entry"><div class="when">Oct 2020</div><div><h3>XVI Congress of Physics Applied to Medicine</h3><p class="where">Botucatu, Brazil</p><ul class="titles"><li>Panel discussion: Medical physics outside the hospital</li></ul></div></li>
+      </ul>
+
+      <h3 class="group">Conference presentations</h3>
+      <ul class="entries compact">
+        <li class="entry"><div class="when">Sep 2019</div><div><h3>XXIV International Conference in Medical Physics <span class="kind">Oral</span></h3><p class="where">Santiago, Chile</p></div></li>
+        <li class="entry"><div class="when">Nov 2018</div><div><h3>XVII Medical Physics Week <span class="kind">Poster</span></h3><p class="where">University of São Paulo, Ribeirão Preto, Brazil</p></div></li>
+        <li class="entry"><div class="when">Sep 2018</div><div><h3>I Chilean Medical Physics Congress <span class="kind">Oral</span></h3><p class="where">Santiago, Chile</p></div></li>
+        <li class="entry"><div class="when">Sep 2018</div><div><h3>XXIII Brazilian Medical Physics Congress <span class="kind">Oral</span></h3><p class="where">Porto Alegre, Brazil</p></div></li>
+        <li class="entry"><div class="when">Aug 2018</div><div><h3>XX Congress of the Brazilian Radiotherapy Society <span class="kind">Poster</span></h3><p class="where">Belo Horizonte, Brazil</p></div></li>
+        <li class="entry"><div class="when">May 2018</div><div><h3>Autumn Meeting of the Brazilian Physics Society <span class="kind">Poster</span></h3><p class="where">Foz do Iguaçu, Brazil</p></div></li>
+        <li class="entry"><div class="when">Nov 2017</div><div><h3>1st National Meeting on Monte Carlo Simulation Applications <span class="kind">Poster</span></h3><p class="where">INCA, Rio de Janeiro, Brazil</p></div></li>
+        <li class="entry"><div class="when">Oct 2017</div><div><h3>XIX Congress of the Brazilian Radiotherapy Society <span class="kind">Poster</span></h3><p class="where">Rio de Janeiro, Brazil</p></div></li>
+        <li class="entry"><div class="when">Oct 2017</div><div><h3>XVI Medical Physics Week <span class="kind">Poster</span></h3><p class="where">University of São Paulo, Ribeirão Preto, Brazil</p></div></li>
+        <li class="entry"><div class="when">Sep 2017</div><div><h3>XXII Brazilian Medical Physics Congress <span class="kind">Poster</span></h3><p class="where">University of São Paulo, Ribeirão Preto, Brazil</p></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="skills">
+    <h2>Skills</h2>
+    <div class="content cols">
+      <div>
+        <h3 class="group">Certifications</h3>
+        <ul class="plain">
+          <li>Monaco 5.11: 3D, IMRT and VMAT planning <span class="kind">2017</span></li>
+          <li>Monaco TPS trainer <span class="kind">2019</span></li>
+          <li>MOSAIQ RO trainer <span class="kind">2021</span></li>
+          <li>Monaco SRS and SBRT trainer <span class="kind">2021</span></li>
+          <li>Leksell G Frame for radiotherapy trainer <span class="kind">2022</span></li>
+          <li>Monaco Physics trainer <span class="kind">2023</span></li>
+          <li>DOSIsoft EPIbeam trainer <span class="kind">2023</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="group">Languages</h3>
+        <ul class="plain">
+          <li>Spanish <span class="kind">native</span></li>
+          <li>English <span class="kind">fluent</span></li>
+          <li>Portuguese <span class="kind">fluent</span></li>
+          <li>Italian <span class="kind">intermediate</span></li>
+          <li>French <span class="kind">basic</span></li>
+        </ul>
+        <h3 class="group">Tools</h3>
+        <ul class="plain">
+          <li>Monaco, Eclipse, MOSAIQ</li>
+          <li>EGSnrc Monte Carlo</li>
+          <li>Python</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="contact">
+    <h2>Contact</h2>
+    <div class="content">
+      <p>The best way to reach me is by email.</p>
+      <p class="mail"><a href="mailto:ignacio.verdugo@fysik.su.se">ignacio.verdugo@fysik.su.se</a></p>
+      <p>Medical Radiation Physics, Department of Physics, Stockholm University</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Ignacio Verdugo. Last updated November 2026.</div>
+</footer>
+
+</body>
+</html>
